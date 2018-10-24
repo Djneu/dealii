@@ -161,8 +161,11 @@ CellId::to_cell(const Triangulation<dim, spacedim> &tria) const
                                                             0,
                                                             coarse_cell_id);
 
+  if(cell->has_children())
+  {
   for (unsigned int i = 0; i < n_child_indices; ++i)
     cell = cell->child(static_cast<unsigned int>(child_indices[i]));
+  }
 
   return cell;
 }
